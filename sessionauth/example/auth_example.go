@@ -71,6 +71,11 @@ func main() {
 		if err != nil {
 			r.Redirect("/login")
 			return
+		}
+
+		if user.Id == 0 {
+			r.Redirect("/login")
+			return
 		} else {
 			err := sessionauth.AuthenticateSession(session, &user)
 			if err != nil {
